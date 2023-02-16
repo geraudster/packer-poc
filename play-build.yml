@@ -1,0 +1,13 @@
+---
+
+- name: Build systemd image
+  hosts: localhost
+  tags: systemd
+  tasks:
+    - shell: packer build -only='build-systemd.docker.debian' .
+
+- name: Build lighttpd image
+  hosts: localhost
+  tags: lighttpd
+  tasks:
+    - shell: packer build -only='build-lighttpd.docker.debian-systemd' .
