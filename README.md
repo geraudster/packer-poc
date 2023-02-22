@@ -16,7 +16,7 @@ Run lighttpd container with:
 ```
 docker run -d -t \
     --name lighttpd \
-    -p 80:80 \
+    -p 8000:80 \
     --tmpfs /run \
     --tmpfs /run/lock \
     --tmpfs /tmp \
@@ -27,4 +27,22 @@ docker run -d -t \
     --security-opt seccomp=unconfined \
     -e container=docker \
     example.com/lighttpd
+```
+
+Run multiservice container with:
+```
+docker run -d -t \
+    --name multiservice \
+    -p 8000:80 \
+    -p 19999:19999 \
+    --tmpfs /run \
+    --tmpfs /run/lock \
+    --tmpfs /tmp \
+    --privileged \
+    --cap-add SYS_ADMIN \
+    --cgroup-parent=docker.slice \
+    --cgroupns private \
+    --security-opt seccomp=unconfined \
+    -e container=docker \
+    example.com/multiservice
 ```

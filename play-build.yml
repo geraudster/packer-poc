@@ -11,3 +11,9 @@
   tags: lighttpd
   tasks:
     - shell: packer build -only='build-lighttpd.docker.debian-systemd' .
+
+- name: Build multiservice image
+  hosts: localhost
+  tags: multiservice
+  tasks:
+    - shell: packer build -only='build-multiservice.docker.debian-systemd' .
